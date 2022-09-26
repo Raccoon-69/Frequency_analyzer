@@ -1,0 +1,4 @@
+from .phrase_search_class import CountPhraseInTheText
+from .read_and_filter_class import ReadDFAndClearingText
+from .word_search_class import CountWordsInTheText
+from .main_counting_functions import MainCountWordsInText
