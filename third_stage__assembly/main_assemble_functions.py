@@ -1,5 +1,5 @@
-from _10__divide_and_rule.third_stage__assembly import FrequencyCalculation, AssemblyIntoOne
-from _10__divide_and_rule.tools_function import save_result_df
+from Frequency_analyzer.third_stage__assembly import FrequencyCalculation, AssemblyIntoOne
+from Frequency_analyzer.tools_function import save_result_df
 
 
 class MainMergeAllDfAndCalculateFrequency:

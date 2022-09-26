@@ -1,7 +1,7 @@
 import json
 
 import pandas as pd
-from _10__divide_and_rule.tools_function import package, adding_dictionary_in_df
+from Frequency_analyzer.tools_function import package, adding_dictionary_in_df
 
 
 class AssemblyIntoOne:

@@ -1,5 +1,5 @@
-from _10__divide_and_rule.second_stage__counting import CountPhraseInTheText, CountWordsInTheText, ReadDFAndClearingText
-from _10__divide_and_rule.tools_function import adding_dictionary_in_df
+from Frequency_analyzer.second_stage__counting import CountPhraseInTheText, CountWordsInTheText, ReadDFAndClearingText
+from Frequency_analyzer.tools_function import adding_dictionary_in_df
 
 
 class MainCountWordsInText:

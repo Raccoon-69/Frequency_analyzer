@@ -2,7 +2,7 @@ import sys
 
 import nltk
 
-from _10__divide_and_rule.tools_function import unpack, package
+from Frequency_analyzer.tools_function import unpack, package
 
 
 class CountWordsInTheText:
