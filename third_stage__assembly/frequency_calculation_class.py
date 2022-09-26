@@ -18,17 +18,20 @@ class FrequencyCalculation:
         info['total_words'] = words_count
         return info
 
-
     def percent_calculation(self, df_result, info, all_percent):
         # расчет встречаемости в %
         all_row = len(df_result)
         getcontext().prec = 24  # Точность вычислений при делении
         one_percent = Decimal(info['total_words']) / Decimal(100)  # Расчет одного процента
+        word_count = 0
         for i, row in df_result.iterrows():
+            word_count += row['GHz']
             sys.stdout.write(f'\rPercent calculation {str(all_row)}/{str(i)}')
             frequency_calculation = Decimal(row['GHz']) / Decimal(one_percent)  # Расчет частоты встречаемости в %
             all_percent += frequency_calculation  # Суммирование строчки
             df_result.at[i, "GHz"] = frequency_calculation  # Запись в файл % встречаемости
+        print(f'\nword_count = {word_count}')
+        print(f'len_df = {len(df_result)}\n')
         return df_result, info, all_percent
 
     def found_row(self, df_result, info, all_percent):

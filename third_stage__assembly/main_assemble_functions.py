@@ -19,6 +19,3 @@ class MainMergeAllDfAndCalculateFrequency:
 
     def calculation(self):
         self.df_result, self.info = FrequencyCalculation().start_calculate(self.dictionary, self.info)
-
-    def end(self):
-        TextOutput().for_end(self.info, self.df_result)
