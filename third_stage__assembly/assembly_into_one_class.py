@@ -14,18 +14,21 @@ class AssemblyIntoOne:
 
     def compiling_all_files_into_one_dictionary(self, settings):
         result_dict = {}
-        for i in range(settings['start_number_of_part'], settings['number_of_part']+1):
-            if settings['text_extension'] == '.csv':
-                text_file_name = f'part_{i} ({settings["original_text_title"]}).csv'
-                df = pd.read_csv(settings['sources_path'] + text_file_name)
-            elif settings['text_extension'] == '.xlsx':
-                text_file_name = f'part_{i} ({settings["original_text_title"]}).xlsx'
-                df = pd.read_excel(settings['sources_path'] + text_file_name,
-                                   sheet_name=settings['text_sheet_name'])
-            else:
-                raise NameError(f'\nHay, Raccoon - Wrong format selected!\n'
-                                f'text_extension = {settings["text_extension"]}\n')
-            result_dict = self.assemble(df, result_dict)
+        try:
+            for i in range(settings['start_number_of_part'], settings['number_of_part']+1):
+                if settings['text_extension'] == '.csv':
+                    text_file_name = f'part_{i} ({settings["original_text_title"]}).csv'
+                    df = pd.read_csv(settings['sources_path'] + text_file_name)
+                elif settings['text_extension'] == '.xlsx':
+                    text_file_name = f'part_{i} ({settings["original_text_title"]}).xlsx'
+                    df = pd.read_excel(settings['sources_path'] + text_file_name,
+                                       sheet_name=settings['text_sheet_name'])
+                else:
+                    raise NameError(f'\nHay, Raccoon - Wrong format selected!\n'
+                                    f'text_extension = {settings["text_extension"]}\n')
+                result_dict = self.assemble(df, result_dict)
+        except:
+            pass
         return result_dict
 
     def assemble(self, df, dictionary):
