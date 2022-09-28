@@ -16,7 +16,7 @@ stage = 'second'  # "first", "second", "third" or "all"
 
 settings = {
 
-    'original_text_title': 'file_name',
+    'original_text_title': 'test_file',
     'text_extension': '.csv',
     'text_sheet_name': 'Sheet1',
 
