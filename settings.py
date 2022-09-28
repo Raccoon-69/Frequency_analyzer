@@ -16,7 +16,7 @@ stage = 'second'  # "first", "second", "third" or "all"
 
 settings = {
 
-    'original_text_title': 'cleared_akipress',
+    'original_text_title': 'file_name',
     'text_extension': '.csv',
     'text_sheet_name': 'Sheet1',
 
