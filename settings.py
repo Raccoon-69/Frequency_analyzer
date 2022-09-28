@@ -10,23 +10,23 @@ r'''
     ============/
 '''
 main_project_folder = '/'.join(os.getcwd().split('\\')[:-1])
-next_folder_to_text_files = '/Sources/for_test/'
+next_folder_to_text_files = '/Sources/cleared_text/'
 
-stage = 'all'  # "first", "second", "third" or "all"
+stage = 'second'  # "first", "second", "third" or "all"
 
 settings = {
 
-    'original_text_title': 'test_text',
-    'text_extension': '.xlsx',
+    'original_text_title': 'cleared_akipress',
+    'text_extension': '.csv',
     'text_sheet_name': 'Sheet1',
 
     'path_to_folder_with_text': f'{main_project_folder}/' if stage in ('first', 'all') else None,
     'path_to_names': f'{main_project_folder}/Sources/Names.csv',
-    'path_to_dictionary': f'{main_project_folder}/Sources/for_test/Dictionary_test.csv',
+    'path_to_dictionary': f'{main_project_folder}/Sources/Ready_dictionary.csv',
 
     'sources_path': f'{main_project_folder}{next_folder_to_text_files}',
 
-    'result_extension': '.xlsx',
+    'result_extension': '.csv',
     'result_sheet_name': 'Sheet1',
     'result_index': True,
 
