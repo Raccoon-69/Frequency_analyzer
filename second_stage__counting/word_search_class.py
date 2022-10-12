@@ -41,7 +41,9 @@ class CountWordsInTheText:
     def search_words_in_dict(self, one_word_in_dict, words_in_text):
         matches = []
         for word in words_in_text:
-            if word.startswith(one_word_in_dict):
+            if len(word) > len(one_word_in_dict) or len(one_word_in_dict) - len(word) < len(word) + 8:
+                continue
+            elif word.startswith(one_word_in_dict):
                 matches.append(word)
         return matches
 

@@ -36,6 +36,7 @@ def create_result_folder(path, folder_name):
 
 
 def save_result_df(df, settings):
+    df = df.sort_values("GHz", ascending=False)
     if settings['result_extension'] == '.xlsx':
         df.to_excel(settings['result_path_name_extension'], index=settings['result_index'])
     elif settings['result_extension'] == '.csv':
@@ -67,7 +68,8 @@ def adding_dictionary_in_df(df, dictionary):
     word_list = dictionary.keys()
     all_row = len(word_list)
     for i, word in enumerate(word_list):
-        sys.stdout.write(f'\rAdding found words {str(all_row)}/{str(i)}')
-        df.at[len(df)] = word, dictionary[word]['RUS'], dictionary[word]['ENG'], \
-                         dictionary[word]['GHz'], dictionary[word]['similar']
+        if dictionary[word]['GHz'] and dictionary[word]['similar']:
+            sys.stdout.write(f'\rAdding found words {str(all_row)}/{str(i)}')
+            df.at[len(df)] = word, dictionary[word]['RUS'], dictionary[word]['ENG'], \
+                             dictionary[word]['GHz'], dictionary[word]['similar']
     return df

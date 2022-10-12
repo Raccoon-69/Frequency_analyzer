@@ -3,12 +3,13 @@ import os
 import nltk
 import pandas as pd
 
+from Frequency_analyzer.fourth_stage__calculation import FrequencyCalculation
+from Frequency_analyzer.third_stage__assembly import AssemblyIntoOne
 from first_stage__division import MainDivisionIntoPart
 from second_stage__counting import MainCountWordsInText
-from third_stage__assembly import MainMergeAllDfAndCalculateFrequency
 from tools_function import create_result_folder, open_text_file, open_dictionary, save_result_df
 from settings import settings, stage
-
+import openpyexcel
 
 # ===============| start functions |===============
 def start_division_into_part(settings):
@@ -50,11 +51,20 @@ def start_count_words(settings):
 
 
 def start_assemble(settings):
-    result_name = f'Frequency_dictionary ({settings["original_text_title"]}){settings["result_extension"]}'
+    result_name = f'demo_frequency_dictionary ({settings["original_text_title"]}){settings["result_extension"]}'
     settings['result_path_name_extension'] = settings['sources_path'] + result_name
     if settings['number_of_part'] != 1:
         settings["sources_path"] += f'second_stage_result__{settings["original_text_title"]}/'
-    MainMergeAllDfAndCalculateFrequency().start_assembly(settings)
+    df_result = AssemblyIntoOne().start_assembly(settings)
+    save_result_df(df_result, settings)
+
+
+def start_percent_calculation(settings):
+    result_name = f'Frequency_dictionary ({settings["original_text_title"]}){settings["result_extension"]}'
+    settings['result_path_name_extension'] = settings['sources_path'] + result_name
+    df_dictionary = open_dictionary(settings)
+    df_result = FrequencyCalculation().start_calculate(df_dictionary, settings)
+    save_result_df(df_result, settings)
 # =================================================
 
 
@@ -82,7 +92,9 @@ if __name__ == '__main__':
         start_count_words(settings)
     elif stage == 'third':
         start_assemble(settings)
-    elif stage == 'all':
+    elif stage == 'fourth':
+        start_percent_calculation(settings)
+    elif stage == 'demo':
         start_division_into_part(settings)
         settings = settings_restart(settings)
         start_count_words(settings)

@@ -4,12 +4,14 @@ from decimal import getcontext, Decimal
 
 class FrequencyCalculation:
 
-    def start_calculate(self, df_result, info):
+    def start_calculate(self, df_result, settings):
+        info = {}
         all_percent = 0
         info = self.counting_word_in_dictionary(df_result, info)
         df_result, info, all_percent = self.percent_calculation(df_result, info, all_percent)
         self.found_row(df_result, info, all_percent)
-        return df_result, info
+        self.save_info(info, settings)
+        return df_result
 
     def counting_word_in_dictionary(self, df_result, info):
         words_count = 0
@@ -30,8 +32,8 @@ class FrequencyCalculation:
             frequency_calculation = Decimal(row['GHz']) / Decimal(one_percent)  # Расчет частоты встречаемости в %
             all_percent += frequency_calculation  # Суммирование строчки
             df_result.at[i, "GHz"] = frequency_calculation  # Запись в файл % встречаемости
-        print(f'\nword_count = {word_count}')
-        print(f'len_df = {len(df_result)}\n')
+        info['word_count'] = word_count
+        info['len_df'] = len(df_result)
         return df_result, info, all_percent
 
     def found_row(self, df_result, info, all_percent):
@@ -59,3 +61,11 @@ class FrequencyCalculation:
         percent_90 = (Decimal(all_percent) / Decimal(100)) * Decimal(90)
         percent_95 = (Decimal(all_percent) / Decimal(100)) * Decimal(95)
         return percent_80, percent_90, percent_95
+
+    def save_info(self, info, settings):
+        with open(f'info__{settings["original_text_title"]}', 'w', encoding='utf-8') as file:
+            file.write(f'80% - {info["p80"]}\n'
+                       f'90% - {info["p90"]}\n'
+                       f'95% - {info["p95"]}\n'
+                       f'word count - {info["word_count"]}\n'
+                       f'len result - {info["len_df"]}')
