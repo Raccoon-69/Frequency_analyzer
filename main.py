@@ -9,7 +9,7 @@ from first_stage__division import MainDivisionIntoPart
 from second_stage__counting import MainCountWordsInText
 from tools_function import create_result_folder, open_text_file, open_dictionary, save_result_df
 from settings import settings, stage
-import openpyexcel
+
 
 # ===============| start functions |===============
 def start_division_into_part(settings):

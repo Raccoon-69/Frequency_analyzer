@@ -17,13 +17,13 @@ class MainDivisionIntoPart:
                          'maintext', 'scraping_time', 'maintext_hash'])  # Создание новой таблицы
         return result_dfs_dict
 
-    def create_skip_num(self, len_df, count_of_part):
+    def create_skip_num(len_df, count_of_part):
         step = round(len_df / count_of_part)
-        skip_num = [step]
+        skip_num = []
         for i in range(0, count_of_part):
-            skip_num += [sum(skip_num)]
-        print(skip_num[1:-1])
-        return skip_num[1:-1]
+            skip_num += [step * i]
+        print(skip_num[1:])
+        return skip_num[1:]
 
     def write_in_files(self, df, result_dfs_dict, skip_num):
         num = 0
